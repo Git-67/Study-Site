@@ -1,6 +1,3 @@
 {
-  "lessons": [
-    "python-01-hello-world.json",
-    "python-02-vs-code.json"
-  ]
+  "lessons": []
 }
