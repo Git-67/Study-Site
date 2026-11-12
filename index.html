@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Hello World!</title>
+    <!-- Lesson text is shown as text, never as HTML. This policy is a second line of
+         defence: only this site's own scripts run, and the page may contact only Groq
+         (Live Code review) and YouTube's privacy-enhanced player. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https://api.groq.com; frame-src https://www.youtube-nocookie.com; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <!-- Apply the saved theme before paint to avoid a flash of the wrong colors. -->
+    <script src="./src/theme-init.js"></script>
+    <!-- Author tools. admin.js is in .gitignore, so it exists only on the author's
+         computer; on the public site this request 404s and the tools stay hidden. -->
+    <script src="./admin.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./src/python-highlight.js" defer></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to main content</a>
+    <header class="navbar">
+      <nav aria-label="Main navigation" class="nav-inner">
+        <a
+          class="brand"
+          href="./index.html"
+          aria-label="Hello World! Refresh home"
+          ><span class="brand-icon">&lt;/&gt;</span
+          ><span class="brand-text">Hello World!</span></a
+        >
+        <div class="nav-actions">
+          <div class="xp-container">
+            <button
+              id="xp-button"
+              class="xp-button"
+              aria-expanded="false"
+              aria-controls="xp-panel"
+            >
+              <span class="xp-label"
+                ><strong id="level-label">Level 0</strong
+                ><span id="xp-label">0 / 100 XP</span></span
+              >
+              <span class="xp-track">
+                <span class="bar"><span id="xp-fill"></span></span>
+                <span id="xp-gain" aria-hidden="true"></span>
+              </span>
+            </button>
+            <section
+              id="xp-panel"
+              class="xp-panel"
+              aria-label="Your XP progress"
+              hidden
+            >
+              <div class="panel-heading">
+                <span>Your progress</span
+                ><span id="encouragement" class="eyebrow encouragement"
+                  >KEEP LEARNING</span
+                >
+              </div>
+              <!-- A 270-degree arc leaves a 90-degree opening at the bottom. -->
+              <div class="donut">
+                <svg viewBox="0 0 220 220" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="xp-gradient">
+                      <stop stop-color="#5e6ad2" />
+                      <stop offset="1" stop-color="#b0b8ff" />
+                    </linearGradient>
+                  </defs>
+                  <circle
+                    class="ring-track"
+                    cx="110"
+                    cy="110"
+                    r="86"
+                    pathLength="100"
+                  />
+                  <circle
+                    id="ring-fill"
+                    cx="110"
+                    cy="110"
+                    r="86"
+                    pathLength="100"
+                  />
+                </svg>
+                <div class="donut-label">
+                  <strong id="donut-current">0 XP</strong
+                  ><span id="donut-needed">/ 100</span>
+                </div>
+              </div>
+              <section class="activity" aria-labelledby="activity-title">
+                <div class="activity-heading">
+                  <strong id="activity-title">Tasks completed</strong
+                  ><span>12 weeks</span>
+                </div>
+                <div
+                  id="task-grid"
+                  class="task-grid"
+                  aria-label="Daily tasks completed"
+                ></div>
+              </section>
+              <div class="debug-controls" aria-label="Debug controls">
+                <button id="debug-xp-down" class="debug-button" type="button">
+                  −25 XP
+                </button>
+                <button id="debug-xp" class="debug-button" type="button">
+                  +25 XP
+                </button>
+                <button id="debug-task-down" class="debug-button" type="button">
+                  −1 task
+                </button>
+                <button id="debug-task" class="debug-button" type="button">
+                  +1 task
+                </button>
+                <button
+                  id="debug-reset-xp"
+                  class="debug-button"
+                  type="button"
+                  title="Reset XP, levels, all lesson progress, and completion rewards"
+                >
+                  Reset XP &amp; lesson progress
+                </button>
+              </div>
+              <span id="progress-status" class="sr-only" role="status"></span>
+            </section>
+          </div>
+          <!-- Google Material Symbols, Apache 2.0. Original sources in src/. -->
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" aria-pressed="false">
+            <img class="theme-sun" src="./src/light-mode-google.svg" alt="" width="22" height="22" />
+            <img class="theme-moon" src="./src/dark-mode-google.svg" alt="" width="22" height="22" />
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main id="content" tabindex="-1"></main>
+    <footer>
+      <nav aria-label="Legal">
+        <a href="#privacy-policy">Privacy policy</a
+        ><a href="#terms-of-service">Terms of service</a
+        ><a href="#data-handling">Data handling</a>
+      </nav>
+      <span class="site-version" aria-label="Version 1.0.0">V1.0.0</span>
+    </footer>
+    <dialog
+      id="terms-gate"
+      class="terms-gate"
+      aria-labelledby="terms-gate-title"
+    >
+      <header>
+        <span class="eyebrow">HELLO WORLD!</span>
+        <h2 id="terms-gate-title">Terms of service</h2>
+        <p>Please read and acknowledge these terms to continue.</p>
+      </header>
+      <div
+        id="terms-gate-copy"
+        class="policy-copy terms-gate-copy"
+        tabindex="0"
+        aria-label="Full terms of service"
+        autofocus
+      ></div>
+      <form id="terms-acknowledgment" method="dialog">
+        <button type="submit">I acknowledge</button>
+      </form>
+    </dialog>
+    <dialog
+      id="level-up"
+      class="level-up"
+      aria-labelledby="level-up-title"
+      aria-describedby="level-up-message"
+    >
+      <div id="confetti" class="confetti" aria-hidden="true"></div>
+      <div class="level-up-card">
+        <svg class="trophy" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+          <path
+            d="M29 20H17v11c0 12 8 19 20 19M67 20h12v11c0 12-8 19-20 19"
+            stroke="currentColor"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+          <path
+            d="M28 14h40v23c0 14-9 23-20 23S28 51 28 37V14Z"
+            fill="currentColor"
+            fill-opacity=".16"
+            stroke="currentColor"
+            stroke-width="5"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M48 61v16M34 82h28M39 77h18"
+            stroke="currentColor"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+          <path
+            d="m48 25 3.5 7 7.5 1-5.5 5.5 1.5 7.5-7-3.5-7 3.5 1.5-7.5L37 33l7.5-1 3.5-7Z"
+            fill="currentColor"
+          />
+        </svg>
+        <span class="eyebrow">LEVEL UP</span>
+        <h2 id="level-up-title" aria-label="Congratulations!">
+          <span id="celebration-letters" aria-hidden="true"
+            >Congratulations!</span
+          >
+        </h2>
+        <p id="level-up-message">
+          You reached level <strong id="celebration-level"></strong>.
+        </p>
+        <p class="continue-hint">click anywhere to continue</p>
+        <button id="level-up-continue" class="level-up-continue" type="button" hidden>Continue</button>
+      </div>
+    </dialog>
+  </body>
+</html>

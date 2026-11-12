@@ -1,0 +1,728 @@
+{
+  "format": "hello-world-lesson",
+  "version": 1,
+  "lesson": {
+    "image": "",
+    "imageAlt": "",
+    "id": "python-01-hello-world",
+    "title": "What is Coding? Meet Python",
+    "description": "Learn what coding and programming languages are, meet Python and write your first line of code: print(\"Hello World!\").",
+    "xp": 150,
+    "sections": [
+      {
+        "name": "What is coding?",
+        "type": "normal",
+        "timer": 0,
+        "blocks": [
+          {
+            "type": "article",
+            "title": "Talking to computers",
+            "text": "Computers are fast, but they can't think for themselves. They only do exactly what they are told.\n\n**Coding** (also called **programming**) is writing step-by-step instructions that a computer can follow. A set of instructions that does a job is called a **program**: every app, game and website you use is a program.\n\n## Like a recipe\nA recipe tells a cook what to do, in order:\n1. Crack two eggs into a bowl\n2. Whisk them\n3. Pour them into a hot pan\n\nCode works the same way, except the cook is a computer, and it follows every step *exactly* as written. If a step is unclear or in the wrong order, the result is wrong too.\n\n> Deep down, computers only understand **binary**: long strings of 0s and 1s. Nobody wants to write that by hand, which is why we use programming languages.",
+            "image": "",
+            "alt": ""
+          },
+          {
+            "type": "flip-cards",
+            "title": "Words you'll hear a lot",
+            "text": "Tap each card to reveal what it means.",
+            "items": [
+              {
+                "title": "Code",
+                "text": "Instructions written for a computer to follow.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "Program",
+                "text": "A complete set of instructions that does a job, like an app or a game.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "Programming language",
+                "text": "A language with strict rules that people use to write code.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "Bug",
+                "text": "A mistake in code that makes a program break or behave wrongly.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "Output",
+                "text": "What a program shows or produces when it runs.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "Syntax",
+                "text": "The grammar rules of a programming language.",
+                "tab": "",
+                "alt": ""
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "single",
+            "title": "What is coding?",
+            "explanation": "Coding is writing exact instructions for a computer to follow.",
+            "marks": 1,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "Writing step-by-step instructions for a computer",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "Fixing broken computer parts",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Typing quickly on a keyboard",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Searching for things on the internet",
+                "correct": false,
+                "category": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Programming languages",
+        "type": "normal",
+        "timer": 0,
+        "blocks": [
+          {
+            "type": "article",
+            "title": "Why so many languages?",
+            "text": "A **programming language** is a way of writing instructions that both people and computers can understand. A special tool then translates your code into the 0s and 1s the computer runs.\n\nThere are hundreds of languages because different jobs need different tools, just like a builder uses a hammer for nails and a saw for wood. Some languages are best for websites, some for games, some for phone apps and some for analysing data.\n\n## High-level vs low-level\n- **Low-level** languages are close to how the computer's hardware works. They are very fast, but hard for people to read.\n- **High-level** languages read more like English. They are much easier to learn and write, which makes them great for beginners.\n\nPython is a **high-level** language.",
+            "image": "",
+            "alt": ""
+          },
+          {
+            "type": "dropdown",
+            "title": "Types of programming languages",
+            "items": [
+              {
+                "title": "Low-level languages",
+                "text": "Close to the hardware. **Machine code** is pure binary; **assembly** uses short codes like `MOV` and `ADD`. Used where every bit of speed matters."
+              },
+              {
+                "title": "High-level languages",
+                "text": "Written in words people can read, such as Python, JavaScript and Java. Most programmers work with these."
+              },
+              {
+                "title": "Compiled languages",
+                "text": "The whole program is translated into machine code *before* it runs, so it usually runs very fast. Examples: C, C++, Rust, Go."
+              },
+              {
+                "title": "Interpreted languages",
+                "text": "The code is translated and run *step by step* by a program called an interpreter, so you can try things quickly. Examples: Python, JavaScript, Ruby."
+              },
+              {
+                "title": "Markup and styling languages",
+                "text": "HTML describes the structure of a web page and CSS describes how it looks. They don't give step-by-step instructions, so they aren't usually called programming languages, but you'll use them often."
+              },
+              {
+                "title": "Query languages",
+                "text": "SQL is used to ask databases questions, like *show me every student older than 12*."
+              }
+            ]
+          },
+          {
+            "type": "drag-match",
+            "title": "Which language is used for what?",
+            "text": "",
+            "items": [
+              {
+                "title": "Python",
+                "text": "Data science, AI and automation",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "JavaScript",
+                "text": "Interactive websites",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "HTML",
+                "text": "The structure of web pages",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "SQL",
+                "text": "Asking questions of databases",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "Swift",
+                "text": "iPhone and iPad apps",
+                "tab": "",
+                "alt": ""
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "sort",
+            "title": "Sort each language: high-level or low-level?",
+            "explanation": "High-level languages read like English; low-level ones are close to the hardware.",
+            "marks": 1,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "High-level",
+              "Low-level"
+            ],
+            "options": [
+              {
+                "text": "Python",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "JavaScript",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Java",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Machine code",
+                "correct": false,
+                "category": 1
+              },
+              {
+                "text": "Assembly",
+                "correct": false,
+                "category": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Meet Python",
+        "type": "normal",
+        "timer": 0,
+        "blocks": [
+          {
+            "type": "article",
+            "title": "What is Python?",
+            "text": "**Python** is a high-level, general-purpose programming language. *General-purpose* means you can use it for almost anything: websites, games, robots, data and artificial intelligence.\n\nPython is famous for being **easy to read**. Compare how two languages show the same message.\n\nJava:\n```java\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World!\");\n    }\n}\n```\nPython:\n```python\nprint(\"Hello World!\")\n```\n## Why people love Python\n- Short, clean code that looks a lot like English\n- Free to use, and runs on Windows, macOS and Linux\n- Huge collection of ready-made tools, called **libraries**\n- A large, friendly community, so help is easy to find\n- Used by beginners *and* by big companies",
+            "image": "",
+            "alt": ""
+          },
+          {
+            "type": "timeline",
+            "title": "A short history of Python",
+            "text": "Step through the key moments.",
+            "items": [
+              {
+                "title": "1989: An idea over the holidays",
+                "text": "Dutch programmer **Guido van Rossum** started building Python as a hobby project during his Christmas holidays, while working at the CWI research institute in the Netherlands.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "The name",
+                "text": "Python is *not* named after the snake. Guido was a fan of the British comedy show **Monty Python's Flying Circus** and wanted a short, slightly mysterious name.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "1991: First release",
+                "text": "Python 0.9.0 was shared publicly in February 1991, so anyone could use it.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "2000: Python 2",
+                "text": "Python 2.0 added popular features and Python's community grew quickly.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "2008: Python 3",
+                "text": "Python 3.0 cleaned up the language. It wasn't fully compatible with Python 2, so moving over took the community years.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "2020: Goodbye, Python 2",
+                "text": "Support for Python 2 officially ended on 1 January 2020. Today everyone uses **Python 3**, and so will you.",
+                "tab": "",
+                "alt": ""
+              },
+              {
+                "title": "Today",
+                "text": "Python is one of the most popular programming languages in the world, and one of the most common first languages taught in schools.",
+                "tab": "",
+                "alt": ""
+              }
+            ]
+          },
+          {
+            "type": "mini-site",
+            "title": "What is Python used for?",
+            "text": "Open each tab to explore.",
+            "items": [
+              {
+                "title": "Building websites",
+                "text": "Python runs the *behind-the-scenes* part of many websites, such as logins and saving data. Popular tools include **Django** and **Flask**, and Instagram is a well-known site built with Django.",
+                "tab": "Websites",
+                "alt": ""
+              },
+              {
+                "title": "Data science and AI",
+                "text": "Scientists and companies use Python to analyse huge amounts of data and to build artificial intelligence. Libraries such as **pandas**, **NumPy** and **PyTorch** make this much easier.",
+                "tab": "Data & AI",
+                "alt": ""
+              },
+              {
+                "title": "Automating boring tasks",
+                "text": "Python scripts can rename hundreds of files, fill in spreadsheets or send reminders, saving hours of repetitive work.",
+                "tab": "Automation",
+                "alt": ""
+              },
+              {
+                "title": "Games, robots and gadgets",
+                "text": "You can make games with **Pygame**, and Python runs on small computers like the **Raspberry Pi** to control robots, lights and sensors.",
+                "tab": "Games & gadgets",
+                "alt": ""
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "multiple",
+            "title": "Which of these are true about Python? Select all that apply.",
+            "explanation": "Python is free, high-level and easy to read, and it's named after Monty Python, not the snake.",
+            "marks": 1,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "It is a high-level language",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "It is free to use",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "It was named after a snake",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "It is used for AI and data science",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "It only works on Windows",
+                "correct": false,
+                "category": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Your first line of code",
+        "type": "normal",
+        "timer": 0,
+        "blocks": [
+          {
+            "type": "article",
+            "title": "Hello, World!",
+            "text": "It's tradition: the first program most people write simply shows the words **Hello World!** on the screen. The tradition was made famous by the 1978 book *The C Programming Language*, and programmers have kept it going ever since.\n\nIn Python, it takes just one line:\n```python\nprint(\"Hello World!\")\n```\nWhen you run it, Python shows this **output**:\n```\nHello World!\n```\n## What is a function?\n`print` is a **function**: a ready-made command that does a job for you. You *call* a function by writing its name followed by brackets `()`. Whatever you put inside the brackets is passed to the function. `print()` shows it on the screen.",
+            "image": "",
+            "alt": ""
+          },
+          {
+            "type": "dropdown",
+            "title": "Breaking it down",
+            "items": [
+              {
+                "title": "print",
+                "text": "The name of the function. It must be all **lowercase**: `Print` won't work."
+              },
+              {
+                "title": "( )",
+                "text": "Brackets (also called parentheses) hold what you give to the function. Every `(` needs a matching `)`."
+              },
+              {
+                "title": "\" \"",
+                "text": "Quotation marks show that this is **text**, called a **string**. You can use double `\"` or single `'` quotes, but the start and end must match."
+              },
+              {
+                "title": "Hello World!",
+                "text": "The text you want to show. It can be anything you like: `print(\"I love coding!\")`"
+              }
+            ]
+          },
+          {
+            "type": "article",
+            "title": "Common mistakes",
+            "text": "Python is very strict about **syntax** (its grammar). These small slips cause errors:\n\n```python\nPrint(\"Hello World!\")    # capital P -> NameError\nprint(Hello World!)      # no quotes -> SyntaxError\nprint(\"Hello World!\"     # missing ) -> SyntaxError\nprint(\"Hello World!')    # quotes don't match -> SyntaxError\n```\nErrors are normal! Every programmer sees them all the time. Read the error message: it usually tells you which line to check.\n\n> **Tip:** Lines starting with `#` are **comments**. Python ignores them, so they're handy for notes to yourself.",
+            "image": "",
+            "alt": ""
+          },
+          {
+            "type": "live-code",
+            "title": "Try it yourself",
+            "text": "Type print(\"Hello World!\") and run it. Then change the message inside the quotes and run it again.",
+            "code": "print(\"Hello World!\")",
+            "marks": 1
+          },
+          {
+            "type": "question",
+            "kind": "single",
+            "title": "Which line correctly prints Hello World!?",
+            "explanation": "`print` must be lowercase, the text needs matching quotes, and the brackets must open and close.",
+            "marks": 1,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "print(\"Hello World!\")",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "Print(\"Hello World!\")",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "print(Hello World!)",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "print \"Hello World!\"",
+                "correct": false,
+                "category": 0
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "short",
+            "title": "Fill in the blank: ____(\"Hello World!\")",
+            "explanation": "The `print` function shows text on the screen.",
+            "marks": 1,
+            "limit": 20,
+            "accepted": "print",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "",
+                "correct": false,
+                "category": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Lesson quiz",
+        "type": "quiz",
+        "timer": 5,
+        "blocks": [
+          {
+            "type": "question",
+            "kind": "single",
+            "title": "Who created Python?",
+            "explanation": "Guido van Rossum started Python in 1989 and released it in 1991.",
+            "marks": 1,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "Guido van Rossum",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "Bill Gates",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Ada Lovelace",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Tim Berners-Lee",
+                "correct": false,
+                "category": 0
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "single",
+            "title": "Python is named after…",
+            "explanation": "Guido named it after the comedy show Monty Python's Flying Circus.",
+            "marks": 1,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "A comedy show, Monty Python's Flying Circus",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "A type of snake",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Its creator's pet",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "A city in the Netherlands",
+                "correct": false,
+                "category": 0
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "multiple",
+            "title": "Which of these are programming languages? Select all that apply.",
+            "explanation": "Python, JavaScript and C++ are programming languages. Chrome is a web browser and Word is a word processor.",
+            "marks": 1,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "Python",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "JavaScript",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "C++",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "Google Chrome",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Microsoft Word",
+                "correct": false,
+                "category": 0
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "sort",
+            "title": "Sort each line: will it run, or cause an error?",
+            "explanation": "`print` must be lowercase, text needs matching quotes, and every bracket must close. Single or double quotes are both fine.",
+            "marks": 2,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "Runs correctly",
+              "Causes an error"
+            ],
+            "options": [
+              {
+                "text": "print(\"Hi\")",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "print('Hi')",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "Print(\"Hi\")",
+                "correct": false,
+                "category": 1
+              },
+              {
+                "text": "print(\"Hi\"",
+                "correct": false,
+                "category": 1
+              },
+              {
+                "text": "print(Hi there)",
+                "correct": false,
+                "category": 1
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "short",
+            "title": "What does print(\"Hello World!\") show on the screen? Type the output exactly.",
+            "explanation": "Only the text inside the quotes is shown; the quotes and brackets are not.",
+            "marks": 1,
+            "limit": 40,
+            "accepted": "Hello World!",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "",
+                "correct": false,
+                "category": 1
+              }
+            ]
+          },
+          {
+            "type": "question",
+            "kind": "single",
+            "title": "What is a bug?",
+            "explanation": "A bug is a mistake in code that makes a program go wrong.",
+            "marks": 1,
+            "limit": 200,
+            "accepted": "",
+            "categories": [
+              "Category 1",
+              "Category 2"
+            ],
+            "options": [
+              {
+                "text": "A mistake in code",
+                "correct": true,
+                "category": 0
+              },
+              {
+                "text": "A type of computer virus",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "A fast program",
+                "correct": false,
+                "category": 0
+              },
+              {
+                "text": "A programming language",
+                "correct": false,
+                "category": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Summary",
+        "type": "summary",
+        "timer": 0,
+        "blocks": [
+          {
+            "type": "simple-list",
+            "title": "What you learned",
+            "items": [
+              {
+                "title": "Coding means writing exact instructions for a computer",
+                "text": "A set of instructions that does a job is a program."
+              },
+              {
+                "title": "Programming languages connect people and computers",
+                "text": "High-level languages are easy to read; low-level ones are close to the hardware."
+              },
+              {
+                "title": "Python is a free, high-level, general-purpose language",
+                "text": "Created by Guido van Rossum and first released in 1991."
+              },
+              {
+                "title": "Python is used for websites, data, AI, automation and games",
+                "text": ""
+              },
+              {
+                "title": "print() is a function that shows text on the screen",
+                "text": "print(\"Hello World!\") shows Hello World!"
+              }
+            ]
+          },
+          {
+            "type": "article",
+            "title": "Next up",
+            "text": "In the next lesson you'll install **Visual Studio Code** and run Python on your own computer.",
+            "image": "",
+            "alt": ""
+          }
+        ]
+      }
+    ]
+  }
+}

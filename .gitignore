@@ -1,0 +1,14 @@
+# Author-only tools (Create lesson, Edit, XP debug). Never publish this file.
+/admin.js
+
+# Local secrets, in case any are added later
+.env
+
+# Claude Code's per-machine settings
+.claude/settings.local.json
+
+# Empty folder left by the old launcher build
+dist/
+
+# AI lesson-writing guide (author-only)
+/LESSON_CREATION.md
