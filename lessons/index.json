@@ -1,3 +1,27 @@
 {
-  "lessons": []
+  "lessons": [
+    "python-01-hello-world.json",
+    "python-02-vs-code.json",
+    "python-03-variables.json",
+    "python-04-input-output.json",
+    "python-05-arithmetic.json",
+    "python-06-strings.json",
+    "python-07-logic.json",
+    "python-08-decisions.json",
+    "python-09-errors.json",
+    "python-10-while.json",
+    "python-11-for.json",
+    "python-12-loop-control.json",
+    "python-13-lists.json",
+    "python-14-processing-lists.json",
+    "python-15-tuples.json",
+    "python-16-dictionaries.json",
+    "python-17-processing-dictionaries.json",
+    "python-18-functions.json",
+    "python-19-returns-scope.json",
+    "python-20-modules.json",
+    "python-21-random.json",
+    "python-22-time.json",
+    "python-23-quiz-project.json"
+  ]
 }

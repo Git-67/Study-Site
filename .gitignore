@@ -7,8 +7,11 @@
 # Claude Code's per-machine settings
 .claude/settings.local.json
 
-# Empty folder left by the old launcher build
-dist/
+# Hide local convenience launcher
+Start Study Website.cmd
 
 # AI lesson-writing guide (author-only)
 /LESSON_CREATION.md
+
+# Hide lessons
+/lessons

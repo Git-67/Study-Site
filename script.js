@@ -213,7 +213,7 @@ const policies = {
       <ul>
         <li><strong>GitHub Pages</strong> sends you the website. Like any web host, it receives your IP address and browser details and may keep them in security logs under GitHub's privacy statement.</li>
         <li><strong>jsDelivr</strong> sends the Python runtime the first time you press Run Python. It receives your IP address and browser details.</li>
-        <li><strong>YouTube</strong> loads a lesson video only after you press Play video, using its privacy-enhanced player. After that, YouTube handles data under Google's policies.</li>
+        <li><strong>YouTube</strong> supplies video thumbnails when a lesson is viewed. The video player loads only after you press Play video, using its privacy-enhanced player. After that, YouTube handles data under Google's policies.</li>
         <li><strong>Groq</strong> is used only if you choose Submit Python code with your own Groq API key. The question, its description and your code are sent to Groq for a short review. If you are under 18, ask a parent, guardian or teacher before using this feature.</li>
       </ul>
       <h2>Keep personal information out of your work</h2>
@@ -257,7 +257,7 @@ const policies = {
       <h2>Importing lessons</h2>
       <p>Import reads a lesson .json file on your device and adds it to your learning space. Lesson text is always shown as plain formatted text, never run as code, and files attached to lessons can be downloaded only if they are common document, image, audio or video types.</p>
       <h2>Cookies and external services</h2>
-      <p>This site does not set cookies. GitHub Pages (hosting), jsDelivr (Python runtime, when you run code), YouTube (only after you press Play video) and Groq (only when you submit code for review) receive connection information such as your IP address. YouTube's player may use its own cookies or storage once loaded.</p>
+      <p>This site does not set cookies. GitHub Pages (hosting), jsDelivr (Python runtime, when you run code), YouTube (for video thumbnails, and for playback after you press Play video) and Groq (only when you submit code for review) receive connection information such as your IP address. YouTube's player may use its own cookies or storage once loaded.</p>
       <h2>Removing stored data</h2>
       <p>Clear this website's site data in your browser's settings to remove all saved progress, lessons you imported and preferences. The Reset button in the progress panel removes XP, levels, task history and lesson progress but keeps lessons. If your browser blocks storage, progress may not be saved and you may see the terms again after refreshing.</p>
     `,
@@ -1226,6 +1226,31 @@ function extractEmbedSrc(embedCode) {
   const id = youtubeVideoId(embedCode);
   return id ? `https://www.youtube-nocookie.com/embed/${id}` : "";
 }
+
+// Create a player only after a click. file:// has no HTTP referrer to send to
+// YouTube (error 153); offer the watch-page link instead of a broken player.
+function createLessonVideoFrame(id, title) {
+  if (!/^[\w-]{11}$/.test(id) || !/^https?:$/.test(location.protocol)) return null;
+  const frame = document.createElement("iframe");
+  const url = new URL(`https://www.youtube-nocookie.com/embed/${id}`);
+  url.searchParams.set("autoplay", "1");
+  url.searchParams.set("playsinline", "1");
+  url.searchParams.set("origin", location.origin);
+  frame.title = title || "YouTube lesson video";
+  frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+  frame.setAttribute("allowfullscreen", "");
+  frame.setAttribute("sandbox", "allow-scripts allow-same-origin allow-presentation allow-popups");
+  frame.referrerPolicy = "strict-origin-when-cross-origin";
+  frame.src = url.href;
+  return frame;
+}
+
+// A blocked/missing thumbnail must not hide the usable play button or watch link.
+document.addEventListener("error", (event) => {
+  if (event.target instanceof HTMLImageElement && event.target.classList.contains("video-thumbnail")) {
+    event.target.hidden = true;
+  }
+}, true);
 
 // All question types share scoring, feedback and controls in quizzes and miniquizzes.
 const Questions = (() => {
@@ -2340,7 +2365,7 @@ const LessonStudio = (() => {
       : "";
   }
   function learnerBlock(block, index, current) {
-    if (block.type === "live-code") return `<article class="content-block"><h2>${esc(block.title)}</h2><p>${esc(block.text)}</p>${liveCodeInput(block,index)}</article>`;
+    if (block.type === "live-code") return `<article class="content-block"><h2>${esc(block.title)}</h2><p class="live-code-description">${esc(block.text)}</p>${liveCodeInput(block,index)}</article>`;
     if (
       section()
         .blocks.slice(0, index)
@@ -2358,9 +2383,11 @@ const LessonStudio = (() => {
     if (block.type === "dropdown")
       return `<article class="content-block text-block lesson-list"><h2>${esc(block.title)}</h2>${block.items.map((entry) => `<details><summary>${esc(entry.title)}</summary><div class="list-description">${renderRichText(entry.text)}</div></details>`).join("")}</article>`;
     if (block.type === "youtube") {
-      // Nothing loads from YouTube until the learner chooses to play the video.
+      // Load the thumbnail first; create the player only after a deliberate click.
       const id = youtubeVideoId(block.embed || "");
-      return `<article class="content-block text-block"><h2>${esc(block.title)}</h2><div class="video-container">${id ? `<button type="button" class="video-play" data-video="${id}" aria-label="Play video: ${esc(block.title) || "YouTube lesson video"}">${creatorIcon("play_arrow")}<span>Play video</span><small>Loads from YouTube</small></button>` : '<p class="editor-help" style="color:var(--muted)">No embed code set for this video.</p>'}</div></article>`;
+      const canEmbed = /^https?:$/.test(location.protocol);
+      const preview = id ? `<img class="video-thumbnail" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="video-preview-label"><span class="video-preview-icon" aria-hidden="true">▶</span><span>Play video</span></span>` : "";
+      return `<article class="content-block text-block lesson-video"><h2>${esc(block.title)}</h2><div class="video-container">${id ? `<button type="button" class="video-play" data-video="${id}" aria-label="Play video: ${esc(block.title) || "YouTube lesson video"}">${preview}</button>` : '<p class="editor-help">No valid YouTube link set for this video.</p>'}</div>${id ? `<div class="video-actions">${canEmbed ? `<button type="button" class="video-reload" data-video="${id}">Reload video</button>` : ''}</div><p class="editor-help video-status" role="status">${canEmbed ? 'Press Play video to watch here in the lesson.' : 'For playback inside the lesson, open Start Study Website.cmd in the website folder, then use the local website it opens.'}</p><details class="video-help"><summary>Video not playing?</summary><p class="editor-help">Error 153 can occur when the browser cannot identify this website to YouTube. Use the local website launcher or the live website in your browser. Some videos also restrict embedded playback.</p><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></details>` : ''}</article>`;
     }
     const reviewed = current.reviewed.includes(index);
     return `<article class="content-block quiz-block"><fieldset><legend>${renderRichText(block.title)}</legend>${Questions.controls(block, current.answers[index], reviewed, index)}</fieldset>${explanation(block, reviewed)}${!reviewed ? `<button data-check="${index}" ${Questions.answered(block, current.answers[index]) ? "" : "disabled"}>Check answer</button>` : `<div class="mini-quiz-reviewed"><button class="mini-retry" data-retry="${index}">Try again</button></div>`}</article>`;
@@ -2483,7 +2510,7 @@ const LessonStudio = (() => {
     // Award 1 task and 15 XP for each newly completed section in play mode.
     if (mode === "play") {
       changeTasks(1);
-      changeXp(15, { sound: false, celebrate: true });
+      changeXp(15);
     }
     return true;
   }
@@ -2538,7 +2565,7 @@ const LessonStudio = (() => {
       return;
     }
     render();
-    // Confetti + sound only for quiz completions; no audio at all for normal sections.
+    // Quiz completions have their own effect; level-up sound is handled by changeXp.
     if (newlyComplete && completedSection.type === "quiz") {
       LessonEffects.celebrate();
     }
@@ -3013,18 +3040,17 @@ const LessonStudio = (() => {
         render(true);
         return;
       } else if (data.video && /^[\w-]{11}$/.test(data.video)) {
-        const frame = document.createElement("iframe");
-        frame.src = `https://www.youtube-nocookie.com/embed/${data.video}?autoplay=1`;
-        frame.title = "YouTube lesson video";
-        frame.allow =
-          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-        frame.setAttribute("allowfullscreen", "");
-        frame.setAttribute(
-          "sandbox",
-          "allow-scripts allow-same-origin allow-presentation allow-popups",
-        );
-        frame.referrerPolicy = "strict-origin-when-cross-origin";
-        button.parentElement.replaceChildren(frame);
+        const article = button.closest(".lesson-video");
+        const container = article?.querySelector(".video-container");
+        if (!container) return;
+        const frame = createLessonVideoFrame(data.video, article.querySelector("h2")?.textContent);
+        if (!frame) {
+          article.querySelector(".video-status").textContent = "To watch here, open Start Study Website.cmd in the website folder and use the website it opens. Directly opened HTML files cannot identify themselves to YouTube.";
+          return;
+        }
+        container.replaceChildren(frame);
+        article.classList.add("video-started");
+        frame.focus();
         return;
       } else if (data.action === "preview") {
         if (mode === "edit") {
